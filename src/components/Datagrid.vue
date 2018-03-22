@@ -6,7 +6,7 @@
             </el-col>
         </el-row>
         <el-table :data="tableData.list" stripe highlight-current-row @current-change="handleCurrentChange">
-            <slot="columns">
+            <slot />
         </el-table>
         <div style="text-align:right;">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentPageChange" :current-page.sync="currentPage"
@@ -27,7 +27,7 @@
             },
             pageSize: {
                 type: Number,
-                default: 100
+                default: 20
             }
         },
         data() {
@@ -39,11 +39,14 @@
         methods: {
             handleCurrentChange(val) {
                 this.currentRow = val;
+                this.$emit('row-change',val);
             },
             handleSizeChange(val) {
+                this.$emit('page-size-change',val);
                 console.log(`每页 ${val} 条`);
             },
             handleCurrentPageChange(val) {
+                this.$emit('page-change',val);
                 console.log(`当前页: ${val}`);
             }
         }
