@@ -3,12 +3,11 @@
 
     <el-row class="header">
       <el-col :span="22">
-        <el-menu :default-active="activeIndex" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
-          @select="handleSelect">
-          <el-menu-item index="1">成员管理</el-menu-item>
-          <el-menu-item index="2">所有任务</el-menu-item>
-          <el-menu-item index="3">我的任务</el-menu-item>
-          <el-menu-item index="4">任务分析</el-menu-item>
+        <el-menu :default-active="activeIndex" router mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+          <el-menu-item index="/member">成员管理</el-menu-item>
+          <el-menu-item index="/task">所有任务</el-menu-item>
+          <el-menu-item index="/myTask">我的任务</el-menu-item>
+          <el-menu-item index="/analyze">任务分析</el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span="2" style="border-bottom:solid 1px #e6e6e6;">
@@ -44,11 +43,6 @@
     data() {
       return {
         activeIndex: '1'
-      }
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
       }
     }
   }
