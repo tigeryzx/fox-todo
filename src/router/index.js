@@ -6,24 +6,31 @@ import Member from '@/pages/Member'
 import Task from '@/pages/Task'
 import MyTask from '@/pages/MyTask'
 import Analyze from '@/pages/Analyze'
+import Login from '@/pages/Login'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
     path: '/',
-    component: Member
+    component: Login
   }, {
-    path: '/member',
-    component: Member
-  }, {
-    path: '/task',
-    component: Task
-  }, {
-    path: '/myTask',
-    component: MyTask
-  }, {
-    path: '/analyze',
-    component: Analyze
+    path: '/home',
+    component: Home,
+    children: [
+      {
+        path: '/home/member',
+        component: Member
+      }, {
+        path: '/home/task',
+        component: Task
+      }, {
+        path: '/home/myTask',
+        component: MyTask
+      }, {
+        path: '/home/analyze',
+        component: Analyze
+      }
+    ]
   }]
 })

@@ -62,22 +62,31 @@
         <el-dialog title="任务信息" :visible.sync="contentFormVisible">
             <el-form ref="dataForm" :model="form" :rules="formRules">
                 <el-form-item label="项目" prop="project" :label-width="formLabelWidth">
-                    <el-input v-model="form.project" auto-complete="off"></el-input>
+                    <el-select style="width:100%;" v-model="form.project" filterable allow-create default-first-option>
+                        <el-option v-for="item in options5" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="分组" prop="group" :label-width="formLabelWidth">
-                    <el-input v-model="form.group" auto-complete="off"></el-input>
+                    <el-select style="width:100%;" v-model="form.group" filterable allow-create default-first-option>
+                        <el-option v-for="item in options5" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="任务描述" prop="description" :label-width="formLabelWidth">
-                    <el-input v-model="form.description" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="计划时间" prop="planTime" :label-width="formLabelWidth">
-                    <el-input v-model="form.planTime" auto-complete="off"></el-input>
+                    <el-input type="textarea" v-model="form.description" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="紧急程度" prop="level" :label-width="formLabelWidth">
-                    <el-input v-model="form.level" auto-complete="off"></el-input>
+                    <el-select style="width:100%;" v-model="form.level" placeholder="请选择">
+                        <el-option v-for="item in levelOptions" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="难度" prop="difficulty" :label-width="formLabelWidth">
-                    <el-input v-model="form.difficulty" auto-complete="off"></el-input>
+                    <el-select style="width:100%;" v-model="form.difficulty" placeholder="请选择">
+                            <el-option v-for="item in difficultyOptions" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -114,11 +123,47 @@
             return {
                 contentFormVisible: false,
                 searhFormVisible: false,
+                options5: [{
+                    value: 'HTML',
+                    label: 'HTML'
+                }, {
+                    value: 'CSS',
+                    label: 'CSS'
+                }, {
+                    value: 'JavaScript',
+                    label: 'JavaScript'
+                }],
+                levelOptions: [{
+                    value: '低',
+                    label: '低'
+                }, {
+                    value: '中等',
+                    label: '中等'
+                }, {
+                    value: '紧急',
+                    label: '紧急'
+                }],
+                difficultyOptions:[{
+                    value:'普通',
+                    label:'普通'
+                },{
+                    value:'中等',
+                    label:'中等'
+                },{
+                    value:'较难',
+                    label:'较难'
+                }],
                 tableData: {
                     list: [],
                     total: 0
                 },
                 form: {
+                    id: 0,
+                    project: '',
+                    group: '',
+                    description: '',
+                    level: '',
+                    difficulty: ''
                 },
                 searchForm: {
                     username: '',
@@ -147,13 +192,8 @@
             },
             openCreate() {
                 this.form = Object.assign(this.form, {
-                    id: 0,
-                    project: '',
-                    group: '',
-                    description: '',
-                    planTime: '',
-                    level: '',
-                    difficulty: ''
+                    level: '中等',
+                    difficulty: '普通'
                 });
                 this.contentFormVisible = true;
             },

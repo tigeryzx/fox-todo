@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row :gutter="20">
-            <el-col :span="12">
+            <el-col :span="24">
                 <el-card>
                     <div slot="header">
                         <span>成员完成任务统计</span>
@@ -19,7 +19,9 @@
                 </el-card>
 
             </el-col>
-            <el-col :span="12">
+        </el-row>
+        <el-row>
+            <el-col :span="24">
                 <el-card>
                     <div slot="header">
                         <span>成员完成任务统计</span>
@@ -38,7 +40,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20">
-            <el-col :span="12">
+            <el-col :span="24">
                 <el-card>
                     <div slot="header">
                         <span>成员完成任务统计</span>
@@ -56,7 +58,10 @@
                 </el-card>
 
             </el-col>
-            <el-col :span="12">
+        </el-row>
+
+        <el-row>
+            <el-col :span="24">
                 <el-card>
                     <div slot="header">
                         <span>成员完成任务统计</span>
